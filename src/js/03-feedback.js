@@ -8,12 +8,15 @@ const storedData = localStorageManager.get('feedback-form-state');
   | Set default values
   |============================
 */
-if (storedData && storedData.email) {
-  formElement.elements.email.value = storedData.email;
-}
-if (storedData && storedData.message) {
-  formElement.elements.message.value = storedData.message;
-}
+const setDefaultValues = defaultValues => {
+  if (defaultValues && defaultValues.email) {
+    formElement.elements.email.value = defaultValues.email;
+  }
+  if (defaultValues && defaultValues.message) {
+    formElement.elements.message.value = defaultValues.message;
+  }
+};
+setDefaultValues(storedData);
 
 /**
   |============================
@@ -45,7 +48,7 @@ const onSubmit = event => {
   const storedData = localStorageManager.get('feedback-form-state');
   if (storedData) {
     // Output Local Storage data
-    console.log(localStorageManager.get('feedback-form-state'));
+    console.log(storedData);
     // Cleanup Local Storage
     localStorageManager.remove('feedback-form-state');
   }

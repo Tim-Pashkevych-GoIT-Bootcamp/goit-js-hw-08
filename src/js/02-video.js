@@ -22,19 +22,17 @@ player.on(
 
 // Set current time retrieved from Local Storage
 if (videoplayerCurrentTime) {
-  player
-    .setCurrentTime(localStorageManager.get('videoplayer-current-time'))
-    .catch(function (error) {
-      switch (error.name) {
-        case 'RangeError':
-          console.log(
-            'The time was less than 0 or greater than the video’s duration'
-          );
-          break;
+  player.setCurrentTime(videoplayerCurrentTime).catch(function (error) {
+    switch (error.name) {
+      case 'RangeError':
+        console.log(
+          'The time was less than 0 or greater than the video’s duration'
+        );
+        break;
 
-        default:
-          console.log('setCurrentTime error: ', error.name);
-          break;
-      }
-    });
+      default:
+        console.log('setCurrentTime error: ', error.name);
+        break;
+    }
+  });
 }
